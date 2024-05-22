@@ -1,3 +1,10 @@
 #sidebar {
     -fx-background-color: #734B5E;
 }
+
+.label {
+    -fx-text-fill: white;
+    -fx-alignment: center;
+    -fx-text-overrun: ellipsis;
+    -fx-font-size: 15;
+}

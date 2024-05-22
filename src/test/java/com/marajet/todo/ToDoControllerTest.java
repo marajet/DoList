@@ -14,7 +14,7 @@ public class ToDoControllerTest {
             chores.add("wash sheets");
             DoList homework = new DoList("Homework", Request.CREATE);
             homework.add("write essay");
-            new DoList("Whatever else", Request.CREATE);
+            new DoList("Whatever else plus this is a very long thing to test text overrun etc etc", Request.CREATE);
         } catch (BadRequestException e) {
             System.out.println("Bad requests...");
         }
