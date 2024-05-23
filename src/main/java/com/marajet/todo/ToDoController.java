@@ -1,10 +1,11 @@
 package com.marajet.todo;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
-import javafx.event.ActionEvent;
 import java.util.ArrayList;
 
 import java.sql.SQLException;
@@ -13,24 +14,7 @@ public class ToDoController {
     @FXML
     private VBox sidebar;
     @FXML
-    private GridPane listPane;
-
-    /*public void openListClick(ActionEvent e) {
-        try {
-            DoList list = new DoList(listName, Request.OPEN);
-            ArrayList<String> tasks = list.getTasks();
-            for (String task : tasks) {
-                Label label = new Label(task);
-                listPane.getChildren().add(label);
-            }
-        } catch (BadRequestException e) {
-            // TODO handle
-        } catch (SQLException e) {
-            Label label = new Label("Couldn't load list...");
-            listPane.getChildren().add(label);
-            // TODO handle
-        }
-    }*/
+    private VBox listPane;
 
     @FXML
     public void initialize() {
@@ -38,6 +22,21 @@ public class ToDoController {
             ArrayList<String> lists = DoList.getLists();
             for (String list : lists) {
                 Label label = new Label(list);
+                label.addEventHandler(MouseEvent.MOUSE_CLICKED, mouseEvent -> {
+                    listPane.getChildren().clear();
+                    try {
+                        DoList list1 = new DoList(list, Request.OPEN);
+                        ArrayList<String> tasks = list1.getTasks();
+                        for (String task : tasks) {
+                            Label label1 = new Label(task);
+                            listPane.getChildren().add(label1);
+                        }
+                    } catch (BadRequestException e) {
+                        // TODO handle
+                    } catch (SQLException e) {
+                        // TODO handle
+                    }
+                });
                 sidebar.getChildren().add(label);
             }
         } catch (SQLException e) {

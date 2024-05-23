@@ -3,7 +3,7 @@
 }
 
 .label {
-    -fx-text-fill: white;
+    -fx-text-fill: black;
     -fx-alignment: center;
     -fx-text-overrun: ellipsis;
     -fx-font-size: 15;
